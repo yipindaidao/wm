@@ -87,7 +87,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style type="text/css" lang="scss">
+<style scoped>
 
   #header{
     position: relative;
@@ -106,79 +106,74 @@
   .avata{
     padding: 24px 16px 18px 24px;
     display: inline-block;
-
-    img{
-      border-radius: 2px;
-    }
   }
 
+  .avata img{
+    border-radius: 2px;
+  }
 
   .content{
     padding: 24px 0px 15px;
     display: inline-block;
+  }
 
-    .title {
-      margin-bottom: 8px;
-      font-size: 20px;
+  .content .title {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
 
-      .brand {
-        display: inline-block;
-        width: 30px;
-        height: 18px;
-        background-image: url(./brand@2x.png);
-        background-size: 30px 18px;
-        background-repeat: no-repeat;
-        vertical-align: top;
-      }
+  .content .title .brand {
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+    background-image: url(./brand@2x.png);
+    background-size: 30px 18px;
+    background-repeat: no-repeat;
+    vertical-align: top;
+  }
 
-      .name {
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 18px;
-      }
-    }
-
-    .discription{
-      font-size: 12px;
-      line-height: 12px;
-      margin-bottom: 10px;
-    }
-
-    .support{
-      font-size: 10px;
-      line-height: 12px;
-
-      .icon {
-        width: 12px;
-        height: 12px;
-        display: inline-block;
-        background-size: 12px 12px;
-        background-repeat: no-repeat;
-        vertical-align: top;
-      }
-
-      .icon.decrease {
-        background-image: url("./decrease_1@2x.png");
-      }
-      .icon.discount {
-        background-image: url("./discount_1@2x.png");
-      }
-      .icon.guarantee {
-        background-image: url("./guarantee_1@2x.png");
-      }
-      .icon.invoice {
-        background-image: url("./invoice_1@2x.png");
-      }
-      .icon.special {
-        background-image: url("./special_1@2x.png");
-      }
-    }
+  .content .title .name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
 
   }
 
+  .content .discription{
+    font-size: 12px;
+    line-height: 12px;
+    margin-bottom: 10px;
+  }
 
+  .content .support{
+    font-size: 10px;
+    line-height: 12px;
+  }
 
+  .support .icon {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    vertical-align: top;
+  }
 
+  .icon.decrease {
+    background-image: url("./decrease_1@2x.png");
+  }
+  .icon.discount {
+    background-image: url("./discount_1@2x.png");
+  }
+  .icon.guarantee {
+    background-image: url("./guarantee_1@2x.png");
+  }
+  .icon.invoice {
+    background-image: url("./invoice_1@2x.png");
+  }
+  .icon.special {
+    background-image: url("./special_1@2x.png");
+  }
 
   .support-count {
     position: absolute;
@@ -204,31 +199,30 @@
     overflow: hidden;
     text-overflow: ellipsis;
     background: rgba(7,17,27,0.2);
+  }
 
-    .bulletin-title {
-      display: inline-block;
-      width: 22px;
-      height: 12px;
-      background-image: url("./bulletin@2x.png");
-      background-size: 22px 12px;
-      background-repeat: no-repeat;
-      margin-top: 8px;
-      vertical-align: top;
-    }
+  .bulletin-title {
+    display: inline-block;
+    width: 22px;
+    height: 12px;
+    background-image: url("./bulletin@2x.png");
+    background-size: 22px 12px;
+    background-repeat: no-repeat;
+    margin-top: 8px;
+    vertical-align: top;
+  }
 
-    .bulletin-text {
-      font-size: 10px;
-      padding-left: 2px;
-      vertical-align: top;
-    }
+  .bulletin-text {
+    font-size: 10px;
+    padding-left: 2px;
+    vertical-align: top;
+  }
 
-    .el-icon-arrow-right {
-      position: absolute;
-      right: 5px;
-      top: 8px;
-      font-size: 10px;
-    }
-
+  .bulletin-wapper .el-icon-arrow-right {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+    font-size: 10px;
   }
 
   .background {
@@ -251,58 +245,56 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: rgba(7,17,27,0.8);
-
-    .detail-wapper {
-      min-height: 100%;
-      width: 100%;
-
-      .detail-main {
-        margin-top: 64px;
-        padding-bottom: 64px;
-
-        .name{
-          line-height: 16px;
-          font-size: 16px;
-          font-weight: 700;
-          text-align: center;
-        }
-
-        .star-wapper {
-          text-align: center;
-          margin-top: 18px;
-          height: 28px;
-          padding: 2px 0;
-        }
-
-        .title {
-          display: flex;
-          width: 80%;
-          margin: 30px auto 24px;
-
-          .line {
-            flex: 1;
-            position:relative;
-            top: -6px;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-          }
-
-          .text {
-            font-size: 14px;
-            padding: 0 12px;
-          }
-        }
-      }
-    }
-
-    .detail-close {
-      position: relative;
-      width: 32px;
-      height: 32px;
-      margin: -64px auto 0;
-      clear: both;
-    }
-
   }
 
+  .detail .detail-wapper {
+    min-height: 100%;
+    width: 100%;
+  }
+
+  .detail .detail-wapper .detail-main {
+    margin-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .detail-main .name{
+    line-height: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .detail-main .star-wapper {
+    text-align: center;
+    margin-top: 18px;
+    height: 28px;
+    padding: 2px 0;
+  }
+
+  .detail-main .title {
+    display: flex;
+    width: 80%;
+    margin: 30px auto 24px;
+  }
+
+  .detail-main .title .line {
+    flex: 1;
+    position:relative;
+    top: -6px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .detail-main .title .text {
+    font-size: 14px;
+    padding: 0 12px;
+  }
+
+  .detail .detail-close {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    margin: -64px auto 0;
+    clear: both;
+  }
 
 </style>
