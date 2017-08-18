@@ -38,6 +38,11 @@
           <div class="star-wapper">
             <star :val="seller.score" :size="24"></star>
           </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
 
         </div>
       </div>
@@ -117,7 +122,7 @@
     font-size: 20px;
   }
 
-  .title .brand {
+  .content .title .brand {
     display: inline-block;
     width: 30px;
     height: 18px;
@@ -127,7 +132,7 @@
     vertical-align: top;
   }
 
-  .title .name {
+  .content .title .name {
     font-size: 16px;
     font-weight: bold;
     line-height: 18px;
@@ -264,6 +269,24 @@
     margin-top: 18px;
     height: 28px;
     padding: 2px 0;
+  }
+
+  .detail-main .title {
+    display: flex;
+    width: 80%;
+    margin: 30px auto 24px;
+  }
+
+  .detail-main .title .line {
+    flex: 1;
+    position:relative;
+    top: -6px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .detail-main .title .text {
+    font-size: 14px;
+    padding: 0 12px;
   }
 
   .detail .detail-close {
