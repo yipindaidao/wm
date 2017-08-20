@@ -1,7 +1,7 @@
 <template>
   <div :class="starType">
     <el-rate
-      v-model="val"
+      v-model="score"
       disabled >
     </el-rate>
   </div>
@@ -9,11 +9,18 @@
 
 <script>
 export default {
+  props: {
+    score: {
+      type: Number
+    },
+    size: {
+      type: Number
+    }
+  },
  data () {
    return {
    }
  },
-  props: ['val','size'],
   computed: {
     starType () {
       return 'starType-' + this.size

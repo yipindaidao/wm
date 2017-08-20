@@ -36,14 +36,27 @@
         <div class="detail-main">
           <h1 class="name">{{ seller.name }}</h1>
           <div class="star-wapper">
-            <star :val="seller.score" :size="24"></star>
+            <star :score="seller.score" :size="24"></star>
           </div>
           <div class="title">
             <div class="line"></div>
             <div class="text">优惠信息</div>
             <div class="line"></div>
           </div>
-
+          <ul  v-if="seller.supports" class="support">
+            <li class="support-item" v-for="item in seller.supports">
+              <span class="icon" :class="classMap[item.type]"></span>
+              <span class="text">{{ item.description }}</span>
+            </li>
+          </ul>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">商家信息</div>
+            <div class="line"></div>
+          </div>
+          <div class="seller-desc">
+            <span>{{ seller.bulletin }}</span>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="hideDetail">
@@ -100,99 +113,94 @@
   .grid-content {
     min-height: 64px;
     position: relative;
-  }
 
+    .avata{
+      padding: 24px 16px 18px 24px;
+      display: inline-block;
 
-  .avata{
-    padding: 24px 16px 18px 24px;
-    display: inline-block;
-
-    img{
-      border-radius: 2px;
-    }
-  }
-
-
-  .content{
-    padding: 24px 0px 15px;
-    display: inline-block;
-
-    .title {
-      margin-bottom: 8px;
-      font-size: 20px;
-
-      .brand {
-        display: inline-block;
-        width: 30px;
-        height: 18px;
-        background-image: url(./brand@2x.png);
-        background-size: 30px 18px;
-        background-repeat: no-repeat;
-        vertical-align: top;
-      }
-
-      .name {
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 18px;
+      img{
+        border-radius: 2px;
       }
     }
 
-    .discription{
-      font-size: 12px;
-      line-height: 12px;
-      margin-bottom: 10px;
+    .content{
+      padding: 24px 0px 15px;
+      display: inline-block;
+
+      .title {
+        margin-bottom: 8px;
+        font-size: 20px;
+
+        .brand {
+          display: inline-block;
+          width: 30px;
+          height: 18px;
+          background-image: url(./brand@2x.png);
+          background-size: 30px 18px;
+          background-repeat: no-repeat;
+          vertical-align: top;
+        }
+
+        .name {
+          font-size: 16px;
+          font-weight: bold;
+          line-height: 18px;
+        }
+      }
+
+      .discription{
+        font-size: 12px;
+        line-height: 12px;
+        margin-bottom: 10px;
+      }
+
+      .support{
+        font-size: 10px;
+        line-height: 12px;
+
+        .icon {
+          width: 12px;
+          height: 12px;
+          display: inline-block;
+          background-size: 12px 12px;
+          background-repeat: no-repeat;
+          vertical-align: top;
+        }
+
+        .icon.decrease {
+          background-image: url("./decrease_1@2x.png");
+        }
+        .icon.discount {
+          background-image: url("./discount_1@2x.png");
+        }
+        .icon.guarantee {
+          background-image: url("./guarantee_1@2x.png");
+        }
+        .icon.invoice {
+          background-image: url("./invoice_1@2x.png");
+        }
+        .icon.special {
+          background-image: url("./special_1@2x.png");
+        }
+      }
+
     }
 
-    .support{
+    .support-count {
+      position: absolute;
+      height: 24px;
+      width: 40px;
+      line-height: 24px;
       font-size: 10px;
-      line-height: 12px;
+      border-radius: 14px;
+      right: 5px;
+      bottom: 14px;
+      background: rgba(0,0,0,0.2);
+      text-align: center;
 
-      .icon {
-        width: 12px;
-        height: 12px;
-        display: inline-block;
-        background-size: 12px 12px;
-        background-repeat: no-repeat;
-        vertical-align: top;
-      }
-
-      .icon.decrease {
-        background-image: url("./decrease_1@2x.png");
-      }
-      .icon.discount {
-        background-image: url("./discount_1@2x.png");
-      }
-      .icon.guarantee {
-        background-image: url("./guarantee_1@2x.png");
-      }
-      .icon.invoice {
-        background-image: url("./invoice_1@2x.png");
-      }
-      .icon.special {
-        background-image: url("./special_1@2x.png");
-      }
+      vertical-align:middle;
     }
 
-  }
-
-
-
-
-
-  .support-count {
-    position: absolute;
-    height: 24px;
-    width: 40px;
-    line-height: 24px;
-    font-size: 10px;
-    border-radius: 14px;
-    right: 5px;
-    bottom: 14px;
-    background: rgba(0,0,0,0.2);
-    text-align: center;
-
-    vertical-align:middle;
   }
 
   .bulletin-wapper {
@@ -257,23 +265,20 @@
       width: 100%;
 
       .detail-main {
-        margin-top: 64px;
+        padding-top: 64px;
         padding-bottom: 64px;
-
         .name{
           line-height: 16px;
           font-size: 16px;
           font-weight: 700;
           text-align: center;
         }
-
         .star-wapper {
           text-align: center;
           margin-top: 18px;
           height: 28px;
           padding: 2px 0;
         }
-
         .title {
           display: flex;
           width: 80%;
@@ -291,6 +296,62 @@
             padding: 0 12px;
           }
         }
+        .support {
+          width: 80%;
+          margin: 0 auto;
+
+          .support-item {
+            margin-bottom: 12px;
+            font-size: 0;
+
+            .icon {
+              width: 16px;
+              height: 16px;
+              display: inline-block;
+              background-size: 16px 16px;
+              background-repeat: no-repeat;
+              vertical-align: top;
+              margin-right: 12px;
+            }
+
+            .icon.decrease {
+              background-image: url("./decrease_2@2x.png");
+            }
+            .icon.discount {
+              background-image: url("./discount_2@2x.png");
+            }
+            .icon.guarantee {
+              background-image: url("./guarantee_2@2x.png");
+            }
+            .icon.invoice {
+              background-image: url("./invoice_2@2x.png");
+            }
+            .icon.special {
+              background-image: url("./special_1@2x.png");
+            }
+
+            .text {
+              font-size: 12px;
+              line-height: 12px;
+            }
+
+
+
+
+          }
+
+
+
+
+        }
+        .seller-desc {
+          width: 80%;
+          margin: 0 auto;
+          font-size: 12px;
+          line-height: 24px;
+          padding-bottom: 18px;
+        }
+
       }
     }
 

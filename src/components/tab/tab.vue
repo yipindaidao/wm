@@ -6,8 +6,6 @@
       <el-tab-pane label="评价" name="ratings"></el-tab-pane>
     </el-tabs>
     <router-view></router-view>
-
-
   </div>
 
 
