@@ -35,11 +35,13 @@
         </li>
       </ul>
     </div>
+    <cartcontrol :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></cartcontrol>
   </div>
 </template>
 
 <script>
   import BScroll from 'better-scroll'
+  import cartcontrol from '../cartcontrol/cartcontrol'
   export default {
     data () {
       return {
@@ -47,6 +49,11 @@
         classMap: ['decrease','discount','special','invoice','guarantee'],
         listHeight: [],
         scrollY: 0
+      }
+    },
+    props: {
+      seller: {
+        type: Object
       }
     },
     computed: {
@@ -92,6 +99,9 @@
           this._initListHeight()
         })
       })
+    },
+    components: {
+      cartcontrol
     }
   }
 </script>

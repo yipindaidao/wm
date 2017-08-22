@@ -1,23 +1,25 @@
 <template>
-
   <div>
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="商品" name="goods"></el-tab-pane>
       <el-tab-pane label="评价" name="ratings"></el-tab-pane>
     </el-tabs>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
-
-
 </template>
 
 <script>
 export default {
  data () {
    return {
-     activeName: 'goods'
+     activeName: 'goods',
    }
  },
+  props: {
+   seller: {
+     type: Object
+   }
+  },
   methods: {
    handleClick(tab,event) {
      this.$router.push(tab.name)

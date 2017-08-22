@@ -68,15 +68,18 @@
 </template>
 
 <script>
-
   import star from '../star/star'
 
   export default {
     data () {
       return {
-        seller: {},
         classMap: ['decrease','discount','special','invoice','guarantee'],
         detailShow: false
+      }
+    },
+    props: {
+      seller: {
+        type: Object
       }
     },
     methods: {
@@ -86,12 +89,6 @@
       hideDetail () {
         this.detailShow= false
       }
-    },
-    created() {
-      this.$http.get('/api/seller').then(res => {
-        res = res.body
-        this.seller = res.data
-      })
     },
     components: {
       star
