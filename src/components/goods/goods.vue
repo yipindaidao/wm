@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" >
       <ul >
-        <li v-for="(item,index) in goods" class="menu-item"  :class="{'current': calculateIndex === index}">
+        <li v-for="(item,index) in goods" class="menu-item"  :class="{'current': calculateIndex === index}" @click="changeTo(index,$event)">
           <span class="text">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{ item.name }}
           </span>
@@ -29,6 +29,9 @@
                   <span class="now">￥{{ food.price }}</span>
                   <span class="old" v-if="food.oldPrice">￥{{ food.oldPrice }}</span>
                 </div>
+                <div class="shopcartcontrol-wrapper">
+                  <shopcartcontrol :food="food"></shopcartcontrol>
+                </div>
               </div>
             </li>
           </ul>
@@ -42,6 +45,8 @@
 <script>
   import BScroll from 'better-scroll'
   import cartcontrol from '../cartcontrol/cartcontrol'
+  import shopcartcontrol from '../shopcartcontrol/shopcartcontrol'
+
   export default {
     data () {
       return {
@@ -70,9 +75,12 @@
     },
     methods: {
       _initBScroll () {
-        this.menuScroll = new BScroll('.menu-wrapper',{})
+        this.menuScroll = new BScroll('.menu-wrapper',{
+          click: true
+        })
         this.goodsScroll = new BScroll('.goods-wrapper',{
-          probeType: 3
+          probeType: 3,
+          click: true
         })
 
         this.goodsScroll.on('scroll',(pos) => {
@@ -88,6 +96,14 @@
           this.listHeight.push(height)
         }
 
+      },
+      changeTo (index,event) {
+        if(!event._constructed) {
+            return
+        }
+        let list = document.getElementsByClassName(' food-list-hook')
+        let el = list[index]
+        this.goodsScroll.scrollToElement(el,300)
       }
     },
     created () {
@@ -101,7 +117,8 @@
       })
     },
     components: {
-      cartcontrol
+      cartcontrol,
+      shopcartcontrol
     }
   }
 </script>
@@ -189,6 +206,7 @@
           margin-right: 10px;
         }
         .content {
+          position: relative;
           flex: 1;
           .name {
             line-height: 14px;
@@ -215,6 +233,11 @@
               text-decoration: line-through;
             }
 
+          }
+          .shopcartcontrol-wrapper {
+            position: absolute;
+            right: 0;
+            bottom: 0;
           }
         }
       }

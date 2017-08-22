@@ -12,7 +12,7 @@
       <div class="price" :class="{'highlight': totalPrice>0}">￥{{ totalPrice }}</div>
       <div class="desc">另需配送费￥{{ deliveryPrice }}</div>
     </div>
-    <div class="cart-right" :class="{'highlight': totalPrice>=minPrice}">{{ surplusPromt }}</div>
+    <div class="cart-right" :class="{'highlight': totalPrice >= minPrice}">{{ surplusPromt }}</div>
   </div>
 </template>
 
@@ -141,13 +141,13 @@
     .cart-right {
       width: 105px;
       height: 100%;
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 700;
       background: #2b343c;
       color: rgba(255,255,255,0.4);
       line-height: 46px;
       text-align: center;
-      .highlight {
+      &.highlight {
         color: rgb(255,255,255);
         background: #00b43c;
       }
