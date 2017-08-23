@@ -6,7 +6,7 @@
           <i class="icon-shopping_cart" :class="{'highlight': totalCount>0}"></i>
         </div>
         <div class="badge" v-show="totalCount>0">
-          <el-badge class="mark" :value="totalCount" />
+          <el-badge class="mark" :value="totalCount" :max="99" />
         </div>
       </div>
       <div class="price" :class="{'highlight': totalPrice>0}">￥{{ totalPrice }}</div>
@@ -27,7 +27,7 @@
         type: Array,
         default () {
           return [
-            {price: 10,count: 2}
+            {price: 10,count: 1}
           ]
         }
       },

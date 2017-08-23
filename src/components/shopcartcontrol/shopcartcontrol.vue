@@ -1,6 +1,11 @@
 <template>
   <div class="shopcartcontrol">
-    <div class="shopcartcontrol-decrease icon-remove_circle_outline" v-show="food.count>0" @click="decreaseToCart"></div>
+    <transition name="move">
+      <div class="shopcartcontrol-decrease " v-show="food.count>0" @click="decreaseToCart" >
+          <i class="inner icon-remove_circle_outline"></i>
+      </div>
+    </transition>
+
     <div class="shopcartcontrol-count" v-show="food.count>0">{{ food.count }}</div>
     <div class="shopcartcontrol-add icon-add_circle" @click="addToCart"></div>
   </div>
@@ -46,12 +51,25 @@
 <style type="text/css" lang="scss">
   .shopcartcontrol {
     font-size: 0;
-    .shopcartcontrol-decrease,.shopcartcontrol-add {
+    .shopcartcontrol-decrease {
       display: inline-block;
       padding: 6px;
-      font-size: 24px;
-      line-height: 24px;
-      color: rgb(0,160,220);
+      transition: all 0.4s linear;
+      .inner {
+        display: inline-block;
+        font-size: 24px;
+        line-height: 24px;
+        color: rgb(0,160,220);
+        transition: all 0.4s linear;
+      }
+      &.move-enter,&.move-leave-to {
+        opacity: 0;
+        transform: translate3D(24px,0,0);
+        .inner {
+          transform: rotate(180deg);
+        }
+      }
+
     }
     .shopcartcontrol-count {
       display: inline-block;
@@ -60,6 +78,13 @@
       vertical-align: top;
       padding-top: 6px;
       color: rgb(147,153,159);
+    }
+    .shopcartcontrol-add {
+      display: inline-block;
+      padding: 6px;
+      font-size: 24px;
+      line-height: 24px;
+      color: rgb(0,160,220);
     }
   }
 </style>
