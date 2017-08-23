@@ -13,6 +13,13 @@
       <div class="desc">另需配送费￥{{ deliveryPrice }}</div>
     </div>
     <div class="cart-right" :class="{'highlight': totalPrice >= minPrice}">{{ surplusPromt }}</div>
+    <div class="ball-wrapper">
+       <transition-group name="drop">
+         <div v-for="ball in balls" v-show="ball.show" v-bind:key="ball.id" class="ball">
+           <div class="inner"></div>
+         </div>
+       </transition-group>
+    </div>
   </div>
 </template>
 
@@ -20,6 +27,18 @@
   export default {
     data () {
       return {
+          balls: [
+            { id: 1, show: false },
+            { id: 2, show: false },
+            { id: 3, show: false },
+            { id: 4, show: false },
+            { id: 5, show: false }
+          ]
+      }
+    },
+    methods: {
+      drop(el) {
+          console.log(el)
       }
     },
     props: {
@@ -152,6 +171,24 @@
         background: #00b43c;
       }
 
+    }
+    .ball-wrapper {
+      .ball {
+        position: fixed;
+        left: 32px;
+        bottom: 22px;
+        z-index: 100;
+        transition: all 0.4s;
+        .inner {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: rgb(0,160,220);
+          transition: all 0.4s;
+        }
+
+
+      }
     }
 
   }
