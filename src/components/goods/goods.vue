@@ -11,10 +11,10 @@
     </div>
     <div class="goods-wrapper" >
       <ul>
-        <li v-for="item in goods" class="food-list food-list-hook">
+        <li  v-for="item in goods" class="food-list food-list-hook">
           <h1 class="title">{{ item.name }}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item">
+            <li @click="showFood(food,$event)" v-for="food in item.foods" class="food-item">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon"/>
               </div>
@@ -39,6 +39,7 @@
       </ul>
     </div>
     <cartcontrol ref="shopcart" :select-foods="selectFoods"  :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></cartcontrol>
+    <food ref="food"></food>
   </div>
 </template>
 
@@ -46,6 +47,7 @@
   import BScroll from 'better-scroll'
   import cartcontrol from '../cartcontrol/cartcontrol'
   import shopcartcontrol from '../shopcartcontrol/shopcartcontrol'
+  import food from '../food/food'
 
   export default {
     data () {
@@ -53,7 +55,7 @@
         goods: [],
         classMap: ['decrease','discount','special','invoice','guarantee'],
         listHeight: [],
-        scrollY: 0
+        scrollY: 0,
       }
     },
     props: {
@@ -118,6 +120,12 @@
       },
       carAdd (target) {
         this.$refs.shopcart.drop(target)
+      },
+      showFood (food,event) {
+        if(!event._constructed) {
+            return
+        }
+        this.$refs.food.show(food)
       }
     },
     created () {
@@ -132,7 +140,8 @@
     },
     components: {
       cartcontrol,
-      shopcartcontrol
+      shopcartcontrol,
+      food
     }
   }
 </script>

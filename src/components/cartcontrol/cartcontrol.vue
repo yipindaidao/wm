@@ -56,6 +56,7 @@
 
 <script>
   import shopcartcontrol from '../shopcartcontrol/shopcartcontrol'
+  import BScroll from 'better-scroll'
   export default {
     data () {
       return {
@@ -94,7 +95,6 @@
             el.style.display = ''
             el.style.webkitTransform = `translate3d(0,${y}px,0)`
             el.style.transform = `translate3d(0,${y}px,0)`
-            console.log(y+"")
             let inner = el.getElementsByClassName('inner-hook')[0]
             inner.style.transform = `translate3d(${x}px,0,0)`
             inner.style.webkitTransform = `translate3d(${x}px,0,0)`
@@ -132,7 +132,7 @@
         this.open = false
       },
       fade () {
-         this.open = false
+        this.open = false
       },
       goToChart () {
         console.log("去结算")
@@ -186,6 +186,21 @@
           return false
         }
         let o = this.open
+        if(o) {
+          this.$nextTick(() => {
+            if(!this.bs) {
+              this.bs = new BScroll('.list-content',{
+                click: true
+              })
+            }
+            else {
+                this.bs.refresh()
+            }
+
+          })
+
+
+        }
         return o
       }
     },
@@ -314,8 +329,7 @@
         transform: translate3d(0,0,0);
       }
 
-
-    .list-header {
+      .list-header {
         height: 40px;
         line-height: 40px;
         padding: 0 18px;
