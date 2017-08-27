@@ -15,17 +15,17 @@
           <h1 class="title">{{ item.name }}</h1>
           <ul>
             <li @click="showFood(food,$event)" v-for="food in item.foods" class="food-item">
-              <div class="icon">
+              <div class="icon" @click="showFood(food,$event)">
                 <img width="57" height="57" :src="food.icon"/>
               </div>
               <div class="content">
-                <h2 class="name">{{ food.name }}</h2>
+                <h2 class="name" >{{ food.name }}</h2>
                 <p class="desc">{{ food.description }}</p>
                 <div class="extra">
                   <span>月售{{ food.sellCount }}份</span>
                   <span>好评率{{ food.rating }}%</span>
                 </div>
-                <div class="price">
+                <div class="price" >
                   <span class="now">￥{{ food.price }}</span>
                   <span class="old" v-if="food.oldPrice">￥{{ food.oldPrice }}</span>
                 </div>
@@ -39,7 +39,7 @@
       </ul>
     </div>
     <cartcontrol ref="shopcart" :select-foods="selectFoods"  :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></cartcontrol>
-    <food ref="food"></food>
+    <food ref="food" v-on:cartAddEvent="carAdd"></food>
   </div>
 </template>
 

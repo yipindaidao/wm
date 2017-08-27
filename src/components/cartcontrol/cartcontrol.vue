@@ -391,7 +391,7 @@
     transition: all 0.5s;
     opacity: 1;
     background: rgba(7,17,27,0.6);
-    &.fade-enter,&fade-leave-to {
+    &.fade-enter,&fade-leave-active {
       opacity: 0;
       background: rgba(7,17,27,0);
     }
