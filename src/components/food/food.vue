@@ -29,6 +29,10 @@
           <div class="intro">{{ food.info }}</div>
         </div>
         <split v-show="food.info"></split>
+        <div class="rating">
+          <h1 class="title">商品评价</h1>
+          <ratingselect></ratingselect>
+        </div>
       </div>
     </div>
   </transition>
@@ -40,6 +44,7 @@
   import shopcartcontrol from '../shopcartcontrol/shopcartcontrol'
   import BScroll from 'better-scroll'
   import split from '../split/split'
+  import ratingselect from '../ratingselect/ratingselect'
 
   export default {
     data () {
@@ -81,7 +86,8 @@
     },
     components: {
       shopcartcontrol,
-      split
+      split,
+      ratingselect
     }
   }
 </script>
@@ -180,6 +186,16 @@
         line-height: 24px;
         font-size: 12px;
         color: rgb(77,85,93);
+      }
+    }
+    .rating {
+      .title {
+        margin-top: 18px;
+        margin-left: 18px;
+        line-height: 14px;
+        color: rgb(7,17,27);
+        font-weight: 700;
+        font-size: 14px;
       }
     }
 
